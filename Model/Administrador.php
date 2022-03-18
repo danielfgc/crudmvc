@@ -59,7 +59,7 @@ class Administrador
 		//die();
 		
  
-		$insert=$db->prepare('call insertarAdministrador (NULL, :username,:contraseña,:email)');
+		$insert=$db->prepare('call insertarUsuario (NULL, :username,:contraseña,:email)');
 		$insert->bindValue('username',$Administrador->getusername());
 		$insert->bindValue('contraseña',$Administrador->getcontraseña());
 		$insert->bindValue('email',$Administrador->getemail());
@@ -96,7 +96,7 @@ class Administrador
  
 	public static function update($Administrador){
 		$db=Db::getConnect();
-		$update=$db->prepare('call actualizarAdministrador(:username, :contraseña, :email,)');
+		$update=$db->prepare('call actualizarUsuario(:username, :contraseña, :email,)');
 		$update->bindValue('username', $Administrador->getusername());
 		$update->bindValue('contraseña',$Administrador->getcontraseña());
 		$update->bindValue('email',$Administrador->getemail());
@@ -106,7 +106,7 @@ class Administrador
  
 	public static function delete($id){
 		$db=Db::getConnect();
-		$delete=$db->prepare('call eliminarAdministrador(:id)');
+		$delete=$db->prepare('call eliminarUsuario(:id)');
 		$delete->bindValue('id',$id);
 		$delete->execute();		
 	}
