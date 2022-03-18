@@ -65,7 +65,7 @@ class Administrador
 		$insert->bindValue('email',$Administrador->getemail());
 		$insert->execute();
 	}
- 
+	
 	public static function all(){
 		$db=Db::getConnect();
 		$listaAdministradors=[];
@@ -97,10 +97,15 @@ class Administrador
 	public static function update($Administrador){
 		$db=Db::getConnect();
 		$update=$db->prepare('call actualizarUsuario(:username, :contraseña, :email,)');
+		$update->bindValue('id',$Administrador->getId());
 		$update->bindValue('username', $Administrador->getusername());
 		$update->bindValue('contraseña',$Administrador->getcontraseña());
 		$update->bindValue('email',$Administrador->getemail());
 		$update->bindValue('id',$Administrador->getId());
+		$update->bindValue('id',$Administrador->getId());
+		$update->bindValue('id',$Administrador->getId());
+		$update->bindValue('id',$Administrador->getId());
+		
 		$update->execute();
 	}
  
