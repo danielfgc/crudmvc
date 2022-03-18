@@ -31,4 +31,5 @@
                  default:
                  break;                           
         }
+        $controller -> {$action}();
     }
