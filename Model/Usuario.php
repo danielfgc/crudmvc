@@ -47,15 +47,9 @@ class Usuario
  
 	public function setemail($email){
 		
-		if (strcmp($email, 'on')==0) {
-			$this->email=1;
-		} elseif(strcmp($email, '1')==0) {
-			$this->email='checked';
-		}elseif (strcmp($email, '0')==0) {
-			$this->email='of';
-		}else {
-			$this->email=0;
-		}
+	
+			$this->email=$email;
+
  
 	}
  
@@ -65,7 +59,7 @@ class Usuario
 		//die();
 		
  
-		$insert=$db->prepare('INSERT INTO Usuario VALUES (NULL, :username,:contraseña,:email)');
+		$insert=$db->prepare('call insertarUsuario (NULL, :username,:contraseña,:email)');
 		$insert->bindValue('username',$Usuario->getusername());
 		$insert->bindValue('contraseña',$Usuario->getcontraseña());
 		$insert->bindValue('email',$Usuario->getemail());
@@ -102,7 +96,7 @@ class Usuario
  
 	public static function update($Usuario){
 		$db=Db::getConnect();
-		$update=$db->prepare('UPDATE Usuario SET username=:username, contraseña=:contraseña, email=:email WHERE id=:id');
+		$update=$db->prepare('call actualizarUsuario(:username, :contraseña, :email,)');
 		$update->bindValue('username', $Usuario->getusername());
 		$update->bindValue('contraseña',$Usuario->getcontraseña());
 		$update->bindValue('email',$Usuario->getemail());
@@ -112,7 +106,7 @@ class Usuario
  
 	public static function delete($id){
 		$db=Db::getConnect();
-		$delete=$db->prepare('DELETE  FROM Usuario WHERE id=:id');
+		$delete=$db->prepare('call eliminarUsuario(:id)');
 		$delete->bindValue('id',$id);
 		$delete->execute();		
 	}

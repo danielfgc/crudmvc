@@ -13,7 +13,7 @@ class AdministradorController
 	}
 
 	function save(){
-		$Administrador= new Administrador(null, $_POST['nombres'],$_POST['apellidos']);
+		$Administrador= new Administrador(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
 		Administrador::save($Administrador);
 		$this->show();
 	}
@@ -26,7 +26,7 @@ class AdministradorController
  
  
 	function update(){
-		$Administrador = new Administrador($_POST['id'],$_POST['nombres'],$_POST['apellidos'],$_POST['estado']);
+		$Administrador = new Administrador(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
 		Administrador::update($Administrador);
 		$this->show();
 	}

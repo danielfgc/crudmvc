@@ -3,17 +3,13 @@
 class UsuarioController
 {
 	
-	function __construct()
-	{
-		
-	}
- 
+
 	function index(){
-		require_once('Views/Usuario/bienvenido.php');
+		require_once('Views/Usuario/index.php');
 	}
 
 	function save(){
-		$Usuario= new Usuario(null, $_POST['nombres'],$_POST['apellidos']);
+		$Usuario= new Usuario(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
 		Usuario::save($Usuario);
 		$this->show();
 	}
@@ -26,7 +22,7 @@ class UsuarioController
  
  
 	function update(){
-		$Usuario = new Usuario($_POST['id'],$_POST['nombres'],$_POST['apellidos'],$_POST['estado']);
+		$Usuario = new Usuario(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
 		Usuario::update($Usuario);
 		$this->show();
 	}

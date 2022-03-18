@@ -47,15 +47,9 @@ class Administrador
  
 	public function setemail($email){
 		
-		if (strcmp($email, 'on')==0) {
-			$this->email=1;
-		} elseif(strcmp($email, '1')==0) {
-			$this->email='checked';
-		}elseif (strcmp($email, '0')==0) {
-			$this->email='of';
-		}else {
-			$this->email=0;
-		}
+	
+			$this->email=$email;
+
  
 	}
  
@@ -65,7 +59,7 @@ class Administrador
 		//die();
 		
  
-		$insert=$db->prepare('INSERT INTO Administrador VALUES (NULL, :username,:contraseña,:email)');
+		$insert=$db->prepare('call insertarAdministrador (NULL, :username,:contraseña,:email)');
 		$insert->bindValue('username',$Administrador->getusername());
 		$insert->bindValue('contraseña',$Administrador->getcontraseña());
 		$insert->bindValue('email',$Administrador->getemail());
@@ -102,7 +96,7 @@ class Administrador
  
 	public static function update($Administrador){
 		$db=Db::getConnect();
-		$update=$db->prepare('UPDATE Administrador SET username=:username, contraseña=:contraseña, email=:email WHERE id=:id');
+		$update=$db->prepare('call actualizarAdministrador(:username, :contraseña, :email,)');
 		$update->bindValue('username', $Administrador->getusername());
 		$update->bindValue('contraseña',$Administrador->getcontraseña());
 		$update->bindValue('email',$Administrador->getemail());
@@ -112,7 +106,7 @@ class Administrador
  
 	public static function delete($id){
 		$db=Db::getConnect();
-		$delete=$db->prepare('DELETE  FROM Administrador WHERE id=:id');
+		$delete=$db->prepare('call eliminarAdministrador(:id)');
 		$delete->bindValue('id',$id);
 		$delete->execute();		
 	}
