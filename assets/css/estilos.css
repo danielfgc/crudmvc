@@ -1,0 +1,46 @@
+body{
+    background-color: #ECECEC;
+}
+section{
+    padding: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    background-color: #9FD3C7;
+    border-radius: 8px;
+}
+a.active{
+    background-color: #385170 !important;
+    color: white !important;
+}
+a{
+    color: #385170 !important;
+}
+a:hover{
+    color: #142D4C !important;
+}
+a.active:hover{
+    color: white !important;
+}
+button {
+    background-color: #385170 !important;
+    border: none !important;
+}
+button:hover {
+    background-color: #142D4C !important;
+}
+main{
+    padding-top: 5%;
+}
+#eliminar{
+    color: rgb(173, 0, 0);
+}
+
+#eliminar:hover{
+    color: rgb(218, 0, 0);
+}
+.editar{
+    color:  #142D4C !important;
+}
+.editar:hover{
+    color: #385170 !important;
+}

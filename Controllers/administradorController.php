@@ -8,32 +8,32 @@ class AdministradorController
 		
 	}
  
-	function index(){
-		require_once('Views/Administrador/bienvenido.php');
+	function inicio(){
+		require_once('Views/Administrador/inicio.php');
 	}
 
 	function save(){
 		$Administrador= new Administrador(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
 		Administrador::save($Administrador);
-		$this->show();
+		$this->lista();
 	}
  
-	function show(){
+	function lista(){
 		$listaAdministradors=Administrador::all();
  
-		require_once('Views/Administrador/show.php');
+		require_once('Views/Administrador/lista.php');
 	}
  
  
-	function update(){
+	function editar(){
 		$Administrador = new Administrador(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
-		Administrador::update($Administrador);
-		$this->show();
+		Administrador::editar($Administrador);
+		$this->lista();
 	}
-	function delete(){
+	function eliminar(){
 		$id=$_GET['id'];
-		Administrador::delete($id);
-		$this->show();
+		Administrador::eliminar($id);
+		$this->lista();
 	}
  
  

@@ -111,5 +111,6 @@ class Usuario
 		$delete->execute();		
 	}
 }
+
  
 ?>

@@ -1,7 +1,7 @@
 <?php
-    $controllers = array('usuario' =>['index', 'show','create','update','delete', 'error'],
-    'administrador'=>['index', 'show','create','update','delete', 'error'],
-    'inicio'=>['registro','error']);
+    $controllers = array('usuario' =>['ficha', 'editar','error','eliminar'],
+    'administrador'=>['ficha', 'editar','error','eliminar','lista'],
+    'inicio'=>['inicio','registro','error']);
 
     if(array_key_exists($controller, $controllers)){
         if(in_array($action, $controllers[$controller])){

@@ -94,7 +94,7 @@ class Administrador
  
 	}
  
-	public static function update($Administrador){
+	public static function editar($Administrador){
 		$db=Db::getConnect();
 		$update=$db->prepare('call actualizarUsuario(:username, :contraseña, :email,)');
 		$update->bindValue('id',$Administrador->getId());
@@ -109,7 +109,7 @@ class Administrador
 		$update->execute();
 	}
  
-	public static function delete($id){
+	public static function eliminar($id){
 		$db=Db::getConnect();
 		$delete=$db->prepare('call eliminarUsuario(:id)');
 		$delete->bindValue('id',$id);
