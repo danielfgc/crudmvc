@@ -12,15 +12,15 @@
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
     <form>
       <div class="form-outline mb-4">
-        <label class="form-label" for="Usuario">Nombre de usuario</label>
-        <input type="text" id="Usuario" class="form-control" name="usuario" />  
+        <label class="form-label" for="usuario">Nombre de usuario</label>
+        <input type="text" id="usuario" class="form-control" name="usuario" />  
       </div>
 
       <div class="form-outline mb-4">
-        <label class="form-label" for="contraseña" name="contraseña">Contraseña</label>
-        <input type="password" id="contraseña" class="form-control" />
+        <label class="form-label" for="contraseña" >Contraseña</label>
+        <input type="password" id="contraseña" class="form-control"  name="contraseña"/>
       </div>
-
+        <div id="errorlogin"></div>
       <div class="row mb-4">
 
 

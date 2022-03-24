@@ -4,7 +4,10 @@
     'inicio'=>['inicio','registro','error']);
 
     if (isset($_COOKIE['rol'])){
-        $rol==1?$controller='administrador':$controller ='alumno';
+        if($rol==1){
+            $controller='administrador'; $action = 'lista';
+            }else{
+                $controller ='alumno'; $action = 'ficha';}
         }else{
           $controller = 'inicio';
         }
