@@ -3,6 +3,12 @@
     'administrador'=>['ficha', 'editar','error','eliminar','lista'],
     'inicio'=>['inicio','registro','error']);
 
+    if (isset($_COOKIE['rol'])){
+        $rol==1?$controller='administrador':$controller ='alumno';
+        }else{
+          $controller = 'inicio';
+        }
+
     if(array_key_exists($controller, $controllers)){
         if(in_array($action, $controllers[$controller])){
             call($controller, $action);

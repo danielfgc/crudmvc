@@ -9,6 +9,4 @@ function verificarUsuario(rutaUrl) {
 	})
 }
 
-urlFoto = document.getElementById('urlfoto');
-foto = document.getElementById('foto');
 

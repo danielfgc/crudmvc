@@ -1,5 +1,5 @@
 <?php
-  require_once("C:/xampp\htdocs\hito2prog\Conexion.php");
+  require_once("../../Connection.php");
 
   $conexion=Db::getConnect();
   
@@ -9,13 +9,13 @@
   
   function verificar($name){
     GLOBAL $consulta;
-    foreach($fila= $consulta->fetchAll() as $con){
+    foreach($consulta->fetchAll() as $con){
     if(strlen($name)<5){
       echo ("<p class='text-danger'>Nombre corto</p>");
     }elseif(strlen($name)>20){
       echo ("<p class='text-danger'>Nombre largo</p>");
     }
-    elseif(strtoupper($name) == strtoupper($fila[$con])){
+    elseif(strtoupper($name) == strtoupper($con[0])){
     echo "<p class='text-danger'>Nombre no disponible</p>";
     break;
     }else{

@@ -3,10 +3,9 @@
     <form action="../registro.php" method="post">
       <div class="form-outline mb-4">
         <label class="form-label" for="nuevousuario">Nombre de usuario</label>
-        <input type="text" id="nuevousuario" name="nuevousuario" class="form-control" onkeyup="verificarUsuario('C:/xampp/htdocs/hito2/crudmvc/assets/async/validar.php')"/>
+        <input type="text" id="nuevousuario" name="nuevousuario" class="form-control" onkeyup="verificarUsuario('../../assets/async/validar.php')"/>
         <div id="destino"></div>
       </div>
-
       <div class="form-outline mb-4">
         <label class="form-label" for="email">Email</label>
         <input type="email" id="email" name="email" class="form-control" />
@@ -40,7 +39,7 @@
         <label class="form-label" for="repetircontraseña">Repita la contraseña</label>
         <input type="password" id="repetircontraseña" name="repetircontraseña" class="form-control" />
       </div>
-    
+      <div id="erregister"></div>
       <button type="submit" class="btn btn-primary btn-block " id="registrame" name="registrame">Regístrame</button>
     </form>
   </div>

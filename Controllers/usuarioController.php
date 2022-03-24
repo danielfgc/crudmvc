@@ -9,27 +9,27 @@ class UsuarioController
 	}
 
 	function save(){
-		$Usuario= new Usuario(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
+		$Usuario= new Usuario(null, $_POST['username'], $_POST['email'],$_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
 		Usuario::save($Usuario);
-		$this->show();
+		$this->ficha();
 	}
  
-	function show(){
+	function ficha(){
 		$listaUsuarios=Usuario::all();
  
-		require_once('Views/Usuario/show.php');
+		require_once('Views/Usuario/ficha.php');
 	}
  
  
 	function update(){
-		$Usuario = new Usuario(null, $_POST['username'],$_POST['contraseña'], $_POST['email']);
+		$Usuario = new Usuario(null, $_POST['username'], $_POST['email'],$_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
 		Usuario::update($Usuario);
-		$this->show();
+		$this->ficha();
 	}
 	function delete(){
 		$id=$_GET['id'];
 		Usuario::delete($id);
-		$this->show();
+		$this->ficha();
 	}
  
  
