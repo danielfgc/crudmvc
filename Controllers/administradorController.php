@@ -19,8 +19,6 @@ class AdministradorController
 	}
  
 	function lista(){
-		$listaAdministradors=Administrador::all();
- 
 		require_once('Views/Administrador/lista.php');
 	}
  

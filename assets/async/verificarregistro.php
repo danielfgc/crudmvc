@@ -33,7 +33,7 @@ function verificarContraseña($pass, $repass){
       $data = json_decode($request_body, true);
       $contraseña = password_hash($data['nuevacontraseña'], PASSWORD_BCRYPT);
       if(verificarUser($data['nuevousuario']) && ($data['email'] !="") && ($data['urlfoto']=! "" ) && $data['respuesta'] != ""){
-          $conexion ->query("call insertarUser(".$data['nuevousuario'].",".$data['email'].",". $contraseña.",". $data['urlfoto'].",". $data['pregunta'].",". $data['respuesta'].");");
+          $conexion ->query('CALL insertarUser('.$data['nuevousuario'].','.$data['email'].','. $contraseña.','. $data['urlfoto'].','. $data['pregunta'].','. $data['respuesta'].');');
           echo "<script>window.alert('Se ha realizado el registro con éxito')</script>";
           header("Location: index.php");
       }else{
