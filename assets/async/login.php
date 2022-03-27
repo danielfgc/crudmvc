@@ -16,6 +16,7 @@
     if($data['usuario'] === $con[1] && password_verify($data['contraseña'], $con[3])){
         setcookie("username", $data['usuario'], time()+3600);
         setcookie("rol", $con[7], time()+3600);
+        
       
         header("Location: index.php");
     }else{

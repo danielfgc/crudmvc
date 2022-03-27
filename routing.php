@@ -4,7 +4,7 @@
     'inicio'=>['inicio','registro','error']);
 
     if (isset($_COOKIE['rol'])){
-        if($rol==1){
+        if($_COOKIE['rol']==1){
             $controller='administrador'; $action = 'lista';
             }else{
                 $controller ='alumno'; $action = 'ficha';}
@@ -26,15 +26,15 @@
         require_once('Controllers/'.$controller.'Controller.php');
         switch ($controller){
             case 'usuario':
-                require_once('model/Usuario.php');
+                require_once('Model/Usuario.php');
                 $controller = new UsuarioController();
                 break;
             case 'administrador':
-                require_once('model/Administrador.php');
+                require_once('Model/Administrador.php');
                  $controller = new AdministradorController();
                  break;
             case 'inicio':
-                require_once('model/Inicio.php');
+                require_once('Model/Inicio.php');
                 $controller = new InicioController();
                  break;
                  default:

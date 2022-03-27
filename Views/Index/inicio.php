@@ -10,7 +10,7 @@
 </ul>
 <div class="tab-content"  id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-    <form>
+    
       <div class="form-outline mb-4">
         <label class="form-label" for="usuario">Nombre de usuario</label>
         <input type="text" id="usuario" class="form-control" name="usuario" />  
@@ -20,7 +20,7 @@
         <label class="form-label" for="contraseña" >Contraseña</label>
         <input type="password" id="contraseña" class="form-control"  name="contraseña"/>
       </div>
-        <div id="errorlogin"></div>
+        
       <div class="row mb-4">
 
 
@@ -69,6 +69,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
-    </form>
+      <div id="errorlogin"></div>
+      <button class="btn btn-primary btn-block" onclick="login('assets/async/login.php')">Iniciar Sesión</button>
+   
   </div>

@@ -1,3 +1,19 @@
+<?php
+  $consulta=Db::getConnect()->query("call fichaUser(".$_COOKIE['username'].")");
+  foreach($consulta->fetchAll() as $user){
+    $id = $user[0];
+    $username = $user[1];
+    $email = $user[2];
+    $contraseña = $user[3];
+    $urlfoto = $user[4];
+    $pregunta = $user[5];
+    $respuesta = $user[6];
+    $idrol = $user[7];
+    $bonfoto = $user[8];
+  }
+?>
+
+
 <header>
         <nav class="navbar navbar-expand justify-content-between">
             <div class="container-fluid">
@@ -12,7 +28,7 @@
               
                 <div class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Bienvenid@ Admin
+                    Bienvenid@ <?php echo $username;?>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
@@ -27,11 +43,10 @@
     <main class="container mt-5">
         <section class="container d-flex justify-content-center p-5">
             <div class="card" style="width: 18rem;">
-                <img src="https://t2.uc.ltmcdn.com/images/0/3/2/img_como_alejarse_de_una_persona_toxica_45230_600.jpg" class="card-img-top" alt="...">
+                <img src="<?php $foto?>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">@Admin</h5>
-                  <p class="card-text">Admin@admin.com</p>
-                  <p>Administrador</p>
+                  <h5 class="card-title">@<?php $username;?></h5>
+                  <p class="card-text"><?php $email;?></p>
                   <div>
                     <a href="#"><button class="btn editar">Editar Perfil</button></a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">

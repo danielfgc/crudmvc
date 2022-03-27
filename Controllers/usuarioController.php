@@ -5,7 +5,7 @@ class UsuarioController
 	
 
 	function index(){
-		require_once('Views/Usuario/index.php');
+		require_once('index.php');
 	}
 
 	function save(){
@@ -29,7 +29,7 @@ class UsuarioController
 	function delete(){
 		$id=$_GET['id'];
 		Usuario::delete($id);
-		$this->ficha();
+		$this->index();
 	}
  
  

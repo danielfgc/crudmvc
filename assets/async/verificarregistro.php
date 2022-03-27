@@ -17,20 +17,23 @@
 
 }
 function verificarContraseña($pass, $repass){
-  return ($pass>6 && $pass<20)&&($pass===$repass);
+    if (($pass<6) || ($pass>20) || ($pass != $repass)){
+      return false;
+    }
 }
 
 
 
 
-  $contraseña = password_hash($data['nuevacontaseña'], PASSWORD_BCRYPT);
+  
   function insertarUser(){
       GLOBAL $conexion;
       GLOBAL $contraseña;
       $request_body = file_get_contents('php://input');
       $data = json_decode($request_body, true);
-      if((verificarUser($data['nuevousuario']))&&($data['email'] !="")&& verificarContraseña($data['nuevacontraseña'], $data['repetircontraseña']) && ($data['urlfoto']=! "" || $data['foto']=!"") && $data['respuesta'] != ""){
-          $conexion ->query("call insertarUser(".$data['nuevousuario'].",".$data['email'].",". $contraseña.",". $data['urlfoto'].",". $data['pregunta'].",". $data['respuesta'].",". $data['foto'].");");
+      $contraseña = password_hash($data['nuevacontraseña'], PASSWORD_BCRYPT);
+      if(verificarUser($data['nuevousuario']) && ($data['email'] !="") && ($data['urlfoto']=! "" ) && $data['respuesta'] != ""){
+          $conexion ->query("call insertarUser(".$data['nuevousuario'].",".$data['email'].",". $contraseña.",". $data['urlfoto'].",". $data['pregunta'].",". $data['respuesta'].");");
           echo "<script>window.alert('Se ha realizado el registro con éxito')</script>";
           header("Location: index.php");
       }else{
