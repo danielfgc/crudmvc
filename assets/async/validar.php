@@ -12,15 +12,15 @@
     foreach($consulta->fetchAll() as $con){
     if(strlen($name)<5){
       echo ("<p class='text-danger'>Nombre corto</p>");
+      break;
     }elseif(strlen($name)>20){
       echo ("<p class='text-danger'>Nombre largo</p>");
+      break;
     }
     elseif(strtoupper($name) == strtoupper($con[0])){
     echo "<p class='text-danger'>Nombre no disponible</p>";
     break;
-    }else{
-      echo "<p class='text-success'>Nombre disponible</p>";
-    } 
+    }
     }
  
 }

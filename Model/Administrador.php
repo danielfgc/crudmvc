@@ -137,24 +137,9 @@ class Administrador
 		}
 		return $listaAdministradors;
 	}
+
  
-	public static function searchById($id){
-		$db=Db::getConnect();
-		$select=$db->prepare('SELECT * FROM Administrador WHERE id=:id');
-		$select->bindValue('id',$id);
-		$select->execute();
- 
-		$AdministradorDb=$select->fetch();
- 
- 
-		$Administrador = new Administrador ($AdministradorDb['id'],$AdministradorDb['username'], $AdministradorDb['email'], $AdministradorDb['contraseña'],$AdministradorDb['urlfoto'],$AdministradorDb['pregunta'],$AdministradorDb['respuesta'],$AdministradorDb['idrol'],$AdministradorDb['binfoto']);
-		//var_dump($Administrador);
-		//die();
-		return $Administrador;
- 
-	}
- 
-	public static function editar($Administrador){
+	public static function update($Administrador){
 		$db=Db::getConnect();
 		$update=$db->prepare('call updateUser(:username, :email, :contraseña, :urlfoto,:pregunta,:respuesta,:binfoto, :id)');
 		$update->bindValue('id',$Administrador->getId());

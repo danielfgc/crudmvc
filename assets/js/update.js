@@ -1,6 +1,7 @@
-function insertarUsuario(rutaUrl) {
+function updateUsuario(rutaUrl) {
 	
     axios.post(rutaUrl,{
+        iduser: document.getElementById('iduser').value,
         nuevousuario:""+ document.getElementById('nuevousuario').value+"",
         email:""+ document.getElementById('email').value+"",
         nuevacontraseña:""+ document.getElementById('nuevacontraseña').value+"",
@@ -11,11 +12,11 @@ function insertarUsuario(rutaUrl) {
     })
 	.then((response)=>{
         respuesta= response.data;
-        if(respuesta == 'Registro realizado con éxito'){
+        if(respuesta == 'Usuario actualizado'){
             window.alert(respuesta);
             window.location.href = 'index.php';
         }else{
-            document.getElementById('erregister').innerHTML = respuesta;
+            document.getElementById('errupdate').innerHTML = respuesta;
         }
 	})
 	.catch((error)=>{

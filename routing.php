@@ -1,16 +1,9 @@
 <?php
-    $controllers = array('usuario' =>['ficha', 'editar','error','eliminar'],
-    'administrador'=>['ficha', 'editar','error','eliminar','lista'],
+    $controllers = array('usuario' =>['ficha', 'editar','error','eliminar','cerrarsesion'],
+    'administrador'=>['ficha', 'editar','error','eliminar','lista','cerrarsesion'],
     'inicio'=>['inicio','registro','error']);
 
-    if (isset($_COOKIE['rol'])){
-        if($_COOKIE['rol']==1){
-            $controller='administrador'; $action = 'lista';
-            }else{
-                $controller ='alumno'; $action = 'ficha';}
-        }else{
-          $controller = 'inicio';
-        }
+
 
     if(array_key_exists($controller, $controllers)){
         if(in_array($action, $controllers[$controller])){
@@ -21,7 +14,7 @@
     }else{
         call($controller,'error');
     }
-
+    
     function call($controller,$action){
         require_once('Controllers/'.$controller.'Controller.php');
         switch ($controller){

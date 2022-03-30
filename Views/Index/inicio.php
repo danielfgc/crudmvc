@@ -20,7 +20,7 @@
         <label class="form-label" for="contraseña" >Contraseña</label>
         <input type="password" id="contraseña" class="form-control"  name="contraseña"/>
       </div>
-        
+        <div id="errlogin"></div>
       <div class="row mb-4">
 
 

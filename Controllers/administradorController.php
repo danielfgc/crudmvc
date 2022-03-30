@@ -12,28 +12,33 @@ class AdministradorController
 		require_once('Views/Administrador/inicio.php');
 	}
 
-	function save(){
-		$Administrador= new Administrador(null, $_POST['username'],$_POST['email'], $_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
-		Administrador::save($Administrador);
-		$this->lista();
-	}
  
 	function lista(){
 		require_once('Views/Administrador/lista.php');
 	}
+	function ficha(){
+
  
+		require_once('Views/Administrador/ficha.php');
+	}
+	function update(){
+		
+		require_once('Views/Administrador/lista.php');
+	}
  
 	function editar(){
-		$Administrador = new Administrador(null, $_POST['username'], $_POST['email'],$_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
-		Administrador::editar($Administrador);
-		$this->lista();
+		require_once('Views/Administrador/editar.php');
 	}
 	function eliminar(){
 		$id=$_GET['id'];
 		Administrador::eliminar($id);
 		$this->lista();
 	}
- 
+	function cerrarsesion(){
+		setcookie('rol','',time()-1000);
+		setcookie('usario','',time()-1000);
+		header('Location:index.php');
+	}
  
 	function error(){
 		require_once('Views/Administrador/error.php');

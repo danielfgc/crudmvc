@@ -1,25 +1,18 @@
 <?php
-  require_once("../../Connection.php");
 
-  $conexion=Db::getConnect();
-  $consulta = $conexion->query('call recorrerElemento();');
 
   function verificarUser($name){
-    GLOBAL $consulta;
-    foreach($consulta->fetchAll() as $con){
-      if(strlen($name)>5 && (strtoupper($name) != strtoupper($con[0])) && strlen($name)<20){
-        return(true);
-        break;
-    }
+    require_once("../../Connection.php");
+    $conexion=Db::getConnect();
+    $consulta = $conexion->prepare('call verificarUser(:user);');
+    $consulta->bindParam('user',$name);
+    $consulta->execute();
+    $verificar = $consulta->fetch();
+    return !$verificar;
 }
-  
 
-
-}
 function verificarContraseña($pass, $repass){
-    if (($pass<6) || ($pass>20) || ($pass != $repass)){
-      return false;
-    }
+  return  ($pass  == $repass);
 }
 
 
@@ -27,17 +20,17 @@ function verificarContraseña($pass, $repass){
 
   
   function insertarUser(){
-      GLOBAL $conexion;
-      GLOBAL $contraseña;
+    require_once("../../Connection.php");
+    $conexion=Db::getConnect();
       $request_body = file_get_contents('php://input');
       $data = json_decode($request_body, true);
       $contraseña = password_hash($data['nuevacontraseña'], PASSWORD_BCRYPT);
-      if(verificarUser($data['nuevousuario']) && ($data['email'] !="") && ($data['urlfoto']=! "" ) && $data['respuesta'] != ""){
-          $conexion ->query('CALL insertarUser('.$data['nuevousuario'].','.$data['email'].','. $contraseña.','. $data['urlfoto'].','. $data['pregunta'].','. $data['respuesta'].');');
-          echo "<script>window.alert('Se ha realizado el registro con éxito')</script>";
-          header("Location: index.php");
+      if(verificarUser($data['nuevousuario'])&& verificarContraseña($data['nuevacontraseña'],$data['repetircontraseña']) && ($data['email'] !="") && ($data['urlfoto']=! "" ) && $data['respuesta'] != ""){
+          $conexion ->query('CALL insertarUser("'.$data['nuevousuario'].'","'.$data['email'].'","'. $contraseña.'","'. $data['urlfoto'].'","'. $data['pregunta'].'","'. $data['respuesta'].'");');
+          echo "Registro realizado con éxito";
+          
       }else{
-        echo "<p class='text-danger'>Uno o varios de los datos son erróneos.</p>";
+        echo "<p class='text-danger'>Uno o varios campos erróneos</p>";
       }
 }
 
