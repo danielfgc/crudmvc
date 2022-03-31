@@ -1,4 +1,7 @@
 <?php
+  if(!isset($_COOKIE['rol']) || $_COOKIE['rol']==2){
+    header('Location: index.php');
+  }
 require_once('Connection.php');
  $conexion =Db::getConnect();
   $consulta= $conexion->query("call fichaUser('".$_GET['username']."');");
@@ -39,8 +42,10 @@ require_once('Connection.php');
                     Bienvenid@ <?php echo $_COOKIE['usuario'];?>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  
                     <li><a class="dropdown-item" href="?controller=administrador&action=ficha&username=<?php echo $nombreadmin;?>">Ver Perfil</a></li>
                     <li><a class="dropdown-item" href="?controller=administrador&action=editar&username=<?php echo $nombreadmin;?>">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=administrador&action=lista">Ver lista</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="index.php?controller=administrador&action=cerrarsesion">Cerrar Sesión</a></li>
                   </ul>
@@ -49,7 +54,7 @@ require_once('Connection.php');
           </nav> 
     </header>
     <main class="container mt-5">
-        <section class="container d-flex justify-content-center p-5">
+        <div class="container d-flex justify-content-center p-5">
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $urlfoto;?>" class="card-img-top" alt="Foto de <?php echo $username;?>">
                 <div class="card-body">
@@ -57,12 +62,14 @@ require_once('Connection.php');
                   <p class="card-text"><?php echo $email;?></p>
                   <div>
                     <a href="?controller=administrador&action=editar&username=<?php echo $username;?>"><button class="btn editar">Editar Perfil</button></a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Eliminar
-                    </button>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <?php
+            if($idrol==2){
+              
+              echo '<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Eliminar
+            </button>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -78,9 +85,11 @@ require_once('Connection.php');
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>';
+            }
+                    ?>
                 </div>
                 </div>
               </div>
-        </section>
+          </div>
     </main

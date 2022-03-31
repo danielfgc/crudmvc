@@ -2,45 +2,50 @@ body{
     background-color: #ECECEC;
 }
 section{
+    margin-top: 5%;
     padding: 3%;
     padding-left: 3%;
     padding-right: 3%;
     background-color: #9FD3C7;
     border-radius: 8px;
 }
-a.active{
-    background-color: #385170 !important;
-    color: white !important;
+
+nav.navbar{
+    background-color: #142D4C !important;
+    
 }
 a{
-    color: #385170 !important;
+    color: #ECECEC !important;
 }
 a:hover{
+    color: #9FD3C7 !important;
+}
+td>a ,li>a, #contra{
+    color: #385170 !important;
+}
+li>a:hover, td>a:hover, #contra:hover{
     color: #142D4C !important;
 }
-a.active:hover{
-    color: white !important;
+
+#adelete{
+    color: rgb(173, 0, 0) !important;
 }
-button {
-    background-color: #385170 !important;
-    border: none !important;
-}
-button:hover {
-    background-color: #142D4C !important;
-}
-main{
-    padding-top: 5%;
-}
-#eliminar{
-    color: rgb(173, 0, 0);
+#adelete:hover{
+    color: rgb(255, 0, 0) !important;
 }
 
-#eliminar:hover{
-    color: rgb(218, 0, 0);
+.editar {
+    background-color: #385170 !important;
+    color: white !important;
+    border: none !important;
 }
-.editar{
-    color:  #142D4C !important;
-}
+
+
 .editar:hover{
-    color: #385170 !important;
+    background-color: #142D4C !important;
+}
+
+#tab-login.active, #tab-register.active{
+    background-color: #385170 !important;
+    color: white !important; 
 }

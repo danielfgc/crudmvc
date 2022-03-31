@@ -1,4 +1,7 @@
 <?php
+  if(!isset($_COOKIE['rol']) || $_COOKIE['rol']==2){
+    header('Location: index.php');
+  }
 require_once('Connection.php');
  $conexion =Db::getConnect();
   $consulta= $conexion->query("call fichaUser('".$_GET['username']."');");
@@ -38,6 +41,7 @@ require_once('Connection.php');
                     Bienvenid@ <?php echo $_COOKIE['usuario'];?>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="?controller=administrador&action=lista">Ver lista</a></li>
                     <li><a class="dropdown-item" href="?controller=administrador&action=ficha&username=<?php echo $nombreadmin;?>">Ver Perfil</a></li>
                     <li><a class="dropdown-item" href="?controller=administrador&action=editar&username=<?php echo $nombreadmin;?>">Editar Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -61,27 +65,21 @@ require_once('Connection.php');
             </div>
             <div class="form-outline mb-4">
               <label for="rol">Rol</label>
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" aria-label="Default select example" id="rol">
                 <?php
                   if($idrol != 1){
-                    echo"<option value='Administrador'>Administrador</option>
-                    <option selected value='Usuario'>Usuario</option>";
+                    echo"<option value='1'>Administrador</option>
+                    <option selected value='2'>Usuario</option>";
                   }else{
-                    echo"<option selected value='Administrador'>Administrador</option>";                    
+                    echo"<option selected value='1'>Administrador</option>";                    
                   }
                 ?>
 
               </select>
             </div>
-            <div class="form-outline mb-4 row">
+            <div class="form-outline mb-4">
               <label class="form-label" for="foto">Foto de Perfil</label>
-              <div class="col">
-              <input type="file" id="foto" name="foto" class="form-control" />
-              </div>
-              <p class="d-flex justify-content-center"> o </p>
-              <div class="col">
               <input type="text" id="urlfoto" name="urlfoto" class="form-control" placeholder="Suba un archivo o adjunte aquí su enlace"/>
-              </div>
             </div>
             <div class="form-outline mb-4">
               <label class="form-label" for="pregunta">Pregunta Secreta</label>
@@ -115,14 +113,16 @@ require_once('Connection.php');
               <label class="form-label" for="repetircontraseña">Repita la contraseña</label>
               <input type="password" id="repetircontraseña" name="repetircontraseña" class="form-control" />
             </div>
-          
-            <button type="button" class="btn btn-primary btn-block boton" id="registrame" name="registrame" onclick="updateUsuario('assets/async/update.php')">Guardar Cambios</button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div id="errupdate"></div>
+            <button type="button" class="btn btn-primary btn-block editar" id="registrame" name="registrame" onclick="updateUsuario('assets/async/update.php')">Guardar Cambios</button>
+            
+            <?php
+            if($idrol==2){
+              
+              echo '<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Eliminar
             </button>
-            <div id="errupdate"></div>
-           
-            <!-- Modal -->
+            
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -139,7 +139,9 @@ require_once('Connection.php');
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>';
+            }
+                    ?>
         
         </section>
     </main>

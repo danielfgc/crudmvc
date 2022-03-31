@@ -5,14 +5,9 @@ class UsuarioController
 	
 
 	function index(){
-		require_once('index.php');
+		header('Location:index.php');
 	}
 
-	function save(){
-		$Usuario= new Usuario(null, $_POST['username'], $_POST['email'],$_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
-		Usuario::save($Usuario);
-		$this->ficha();
-	}
  
 	function ficha(){
 
@@ -23,16 +18,13 @@ class UsuarioController
 	function editar(){
 		require_once('Views/Usuario/editar.php');
 	}
- 
-	function update(){
-		$Usuario = new Usuario(null, $_POST['username'], $_POST['email'],$_POST['contraseña'],$_POST['urlfoto'],$_POST['pregunta'],$_POST['respuesta'],$_POST['idrol'],$_POST['binfoto']);
-		Usuario::update($Usuario);
-		$this->ficha();
-	}
+
 	function eliminar(){
 		$id=$_GET['id'];
 		Usuario::delete($id);
-		$this->index();
+		setcookie('rol','',time()-1000);
+		setcookie('usario','',time()-1000);
+		header('Location:index.php');
 	}
  	function cerrarsesion(){
 		setcookie('rol','',time()-1000);

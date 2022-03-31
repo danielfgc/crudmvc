@@ -26,7 +26,7 @@ function verificarContraseña($pass, $repass){
       $data = json_decode($request_body, true);
       $contraseña = password_hash($data['nuevacontraseña'], PASSWORD_BCRYPT);
       if(verificarUser($data['nuevousuario'])&& verificarContraseña($data['nuevacontraseña'],$data['repetircontraseña'])){
-          $conexion ->query('CALL updateUser("'.$data['nuevousuario'].'","'.$data['email'].'","'. $contraseña.'","'. $data['urlfoto'].'","'. $data['pregunta'].'","'. $data['respuesta'].'",'. intval($data['iduser']).');');
+          $conexion ->query('CALL updateUser("'.$data['nuevousuario'].'","'.$data['email'].'","'. $contraseña.'","'. $data['urlfoto'].'","'. $data['pregunta'].'","'. $data['respuesta'].'",'. intval($data['iduser']).','.intval($data['rol']).');');
           echo "Usuario actualizado";
           
       }else{

@@ -25,7 +25,7 @@
 
 
         <div class="col-md-6 d-flex justify-content-start">
-          <a href="#!" data-bs-toggle="modal" data-bs-target="#recuperar">¿Olvidó su contraseña?</a>
+          <a href="#" id="contra" data-bs-toggle="modal" data-bs-target="#recuperar">¿Olvidó su contraseña?</a>
         </div>
         <div class="modal fade" id="recuperar" tabindex="-1" aria-labelledby="recuperar" aria-hidden="true">
           <div class="modal-dialog">
@@ -41,35 +41,68 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salir</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#respuestarecu">Siguiente</button>
+                <div id="erroruser"></div>
+                <button type="button" class="btn btn-primary editar" data-bs-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-danger editar" data-bs-toggle="modal" id="aciertouser" data-bs-target="" onmouseover="recuperar1('assets/async/verificaruser.php')">Siguiente</button>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="modal fade" id="respuestarecu" tabindex="-1" aria-labelledby="respuestarecu" aria-hidden="true">
+        <div class='modal fade' id='respuestarecu' tabindex='-1' aria-labelledby='respuestarecu' aria-hidden='true'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+        <input type="text" id="user" name="iduser" value="" class="form-control" hidden/>
+          <h5 class='modal-title' id='respuestarecu'>Pregunta secreta</h5>
+          <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+        </div>
+        <div class='modal-body'>
+          <div class='form-outline mb-4'>
+            <label class='form-label' for='respuestarecu' id='pregunta'></label>
+            <input type='text' id='respuestarecu' class='form-control' name='respuestarecu' />  
+            <div id="errorrespuesta"></div>
+          </div>
+        </div>
+        <div class='modal-footer'>
+          <button type='button' class='btn btn-primary editar' data-bs-dismiss='modal'>Salir</button>
+          <button type='button' class='btn btn-danger editar' id="aciertorespuesta"  data-bs-toggle='modal' data-bs-target='' onmouseover="recuperar2('assets/async/verificarrespuesta.php')">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      <div class="modal fade" id="repetir" tabindex="-1" aria-labelledby="repetir" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="respuestarecu">Pregunta secreta</h5>
+                <h5 class="modal-title" id="repetir">Reestablecer contraseña</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="respuestarecu" id="preguntarecu"></label>
-                  <input type="text" id="respuestarecu" class="form-control" name="respuestarecu" />  
+                  <label class="form-label" for="repetir" id="preguntarecu">Nueva Contraseña</label>
+                  <input type="password" id="recucontra" class="form-control" name="recucontra" />  
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="repetir" id="preguntarecu">Repetir nueva contraseña</label>
+                  <input type="password" id="reperecucontra" class="form-control" name="reperecucontra" />  
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salir</button>
-                <button type="button" class="btn btn-danger">Recuperar</button>
+                <button type="button" class="btn btn-primary editar" data-bs-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-danger editar" onclick="recuperar3('assets/async/recpuerarcontraseña.php')">Recuperar</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+
+
+
       <div id="errorlogin"></div>
-      <button class="btn btn-primary btn-block" onclick="login('assets/async/login.php')">Iniciar Sesión</button>
+      <button class="btn btn-primary btn-block editar" onclick="login('assets/async/login.php')">Iniciar Sesión</button>
    
   </div>

@@ -1,4 +1,7 @@
 <?php
+  if(!isset($_COOKIE['rol']) || $_COOKIE['rol']==1){
+    header('Location: index.php');
+  }
 require_once('Connection.php');
  $conexion =Db::getConnect();
   $consulta= $conexion->query("call fichaUser('".$_COOKIE['usuario']."');");
@@ -32,8 +35,8 @@ require_once('Connection.php');
                     Bienvenid@ <?php echo $username;?>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="?controller=usuario&action=ficha&username">Ver Perfil</a></li>
-                    <li><a class="dropdown-item" href="?controller=usuario&action=editar&username=<?php echo $username;?>">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=usuario&action=ficha&usuario">Ver Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=usuario&action=editar&usuario=<?php echo $username;?>">Editar Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="index.php?controller=usuario&action=cerrarsesion">Cerrar Sesión</a></li>
                   </ul>
@@ -53,11 +56,9 @@ require_once('Connection.php');
               <label class="form-label" for="email">Email</label>
               <input type="email" id="email" name="email" class="form-control" placeholder="<?php echo $email;?>" />
             </div>
-            <div class="form-outline mb-4 row">
+            <div class="form-outline mb-4">
               <label class="form-label" for="foto">Foto de Perfil</label>
-              <div class="col">
               <input type="text" id="urlfoto" name="urlfoto" class="form-control" placeholder="Adjunte aquí su enlace"/>
-              </div>
             </div>
             <div class="form-outline mb-4">
               <label class="form-label" for="pregunta">Pregunta Secreta</label>
@@ -79,6 +80,7 @@ require_once('Connection.php');
                 ?>
               </select>
               <input type="text" id="iduser" name="iduser" value="<?php echo $id;?>" class="form-control" hidden/>
+              <input type="text" id="rol" name="rol" value="2" class="form-control" hidden/>
               <label class="form-label" for="respuesta">Respuesta Secreta</label>
               <input type="text" id="respuesta" name="respuesta" class="form-control"/>
             </div>
@@ -92,7 +94,7 @@ require_once('Connection.php');
               <input type="password" id="repetircontraseña" name="repetircontraseña" class="form-control" />
             </div>
           
-            <button type="button" class="btn btn-primary btn-block boton" id="registrame" name="registrame" onclick="updateUsuario('assets/async/update.php')">Guardar Cambios</button>
+            <button type="button" class="btn btn-primary btn-block editar" id="registrame" name="registrame" onclick="updateUsuario('assets/async/update.php')">Guardar Cambios</button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Eliminar
             </button>

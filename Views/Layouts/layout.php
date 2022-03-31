@@ -17,6 +17,9 @@
     
     ?>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="assets/js/recuperarcontraseña.js"></script>
+    <script src="assets/js/verificarrespuesta.js"></script>
+    <script src="assets/js/verificaruser.js"></script>
     <script src="assets/js/validar.js"></script>
     <script src="assets/js/update.js"></script>
     <script src="assets/js/login.js"></script>

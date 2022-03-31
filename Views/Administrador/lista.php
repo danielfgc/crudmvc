@@ -1,6 +1,6 @@
 <?php
   if(!isset($_COOKIE['rol']) || $_COOKIE['rol']==2){
-    header('Location: index.php');
+    header('Refresh:0, url=index.php');
   }
   $conexion1 =Db::getConnect();
   $consulta1= $conexion1->query("call fichaUser('".$_COOKIE['usuario']."');");
@@ -33,8 +33,9 @@
                 Bienvenid@ <?php echo $_COOKIE['usuario'];?>
               </a>
               <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <li><a class='dropdown-item' href='?controller=administrador&action=ficha&username=<?php echo $nombreadmin;?>'>Ver Perfil</a></li>
-                <li><a class='dropdown-item' href='?controller=administrador&action=editar&username=<?php echo $nombreadmin;?>'>Editar Perfil</a></li>
+              <li><a class="dropdown-item" href="?controller=administrador&action=lista">Ver lista</a></li>
+                    <li><a class="dropdown-item" href="?controller=administrador&action=ficha&username=<?php echo $username;?>">Ver Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=administrador&action=editar&username=<?php echo $username;?>">Editar Perfil</a></li>
                 <li><hr class='dropdown-divider'></li>
                 <li><a class='dropdown-item' href='index.php?controller=administrador&action=cerrarsesion'>Cerrar Sesión</a></li>
               </ul>
@@ -52,6 +53,8 @@
               <th>Usuario</th>
               <th>Email</th>
               <th>Rol</th>
+              <th>Editar</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -66,17 +69,18 @@
                 <td>".$fila[1]."</td>
                 <td>".$fila[2]."</td>
                 <td>".$rol."</td>
-                <td><a href='?controller=administrador&action=ficha&username=".$fila[1]."' class='editar'>Editar Perfil</a></td>
-                <td><a href='#'><i class='fas fa-trash-alt' id='eliminar' data-bs-toggle='modal' data-bs-target='#staticBackdrop".$fila[0]."'></i></a></td>
+                <td><a href='?controller=administrador&action=ficha&username=".$fila[1]."'>Editar Perfil</a></td>";
+                if($fila[4] == 2){
+                echo "<td><a href='#' id='adelete' data-bs-toggle='modal' data-bs-target='#staticBackdrop".$fila[0]."'>Eliminar</a></td>
                   <div class='modal fade' id='staticBackdrop".$fila[0]."' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                       <div class='modal-content'>
                         <div class='modal-header'>
-                          <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                          <h5 class='modal-title' id='exampleModalLabel'>Está a punto de eliminar a ".$fila[1]."</h5>
                           <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                          Desea Continuar
+                          ¿Desea Continuar?
                         </div>
                         <div class='modal-footer'>
                           <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Salir</button>
@@ -84,9 +88,10 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>";
+                }
                
-              </tr>";
+              echo "</tr>";
               }
             ?>
 

@@ -1,4 +1,7 @@
 <?php
+  if(!isset($_COOKIE['rol']) || $_COOKIE['rol']==1){
+    header('Location: index.php');
+  }
 require_once('Connection.php');
  $conexion =Db::getConnect();
   $consulta= $conexion->query("call fichaUser('".$_COOKIE['usuario']."');");
@@ -32,8 +35,8 @@ require_once('Connection.php');
                     Bienvenid@ <?php echo $username;?>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="?controller=usuario&action=ficha&username">Ver Perfil</a></li>
-                    <li><a class="dropdown-item" href="?controller=usuario&action=editar&username=<?php echo $username;?>">Editar Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=usuario&action=ficha">Ver Perfil</a></li>
+                    <li><a class="dropdown-item" href="?controller=usuario&action=editar">Editar Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="index.php?controller=usuario&action=cerrarsesion">Cerrar Sesión</a></li>
                   </ul>

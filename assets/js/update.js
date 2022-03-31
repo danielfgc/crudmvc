@@ -8,7 +8,8 @@ function updateUsuario(rutaUrl) {
         repetircontraseña:""+ document.getElementById('repetircontraseña').value+"",
         urlfoto:""+ document.getElementById('urlfoto').value+"",
         respuesta:""+ document.getElementById('respuesta').value+"",
-        pregunta:""+ document.getElementById('pregunta').value+""
+        pregunta:""+ document.getElementById('pregunta').value+"",
+        rol: document.getElementById('rol').value
     })
 	.then((response)=>{
         respuesta= response.data;
